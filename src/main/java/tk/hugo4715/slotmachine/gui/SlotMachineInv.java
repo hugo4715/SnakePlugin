@@ -11,6 +11,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -138,6 +139,8 @@ public class SlotMachineInv extends AbstractGui {
 					head.len += ap.golden ? -1 : 1;
 					score++;
 					if(speed > 1)speed--;
+					player.playSound(player.getLocation(), Sound.PISTON_RETRACT, 10, 10);
+
 				}
 				
 				if(head.body.size() > head.len-1){
@@ -170,7 +173,7 @@ public class SlotMachineInv extends AbstractGui {
 	private void lose(String string) {
 		player.closeInventory();
 		player.sendMessage(ChatColor.GREEN + string);
-		
+
 		
 		 Firework fw = (Firework) player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
          FireworkMeta fwm = fw.getFireworkMeta();
@@ -179,6 +182,8 @@ public class SlotMachineInv extends AbstractGui {
          fwm.addEffect(effect);
          fwm.setPower(r.nextInt(2) + 1);
          fw.setFireworkMeta(fwm);           
+         player.playSound(player.getLocation(), Sound.EXPLODE, 10, 10);
+
 	}
 
 	private void goUp() {
