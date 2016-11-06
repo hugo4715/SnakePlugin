@@ -31,6 +31,7 @@ public class SlotMachineInv extends AbstractGui {
 	private float percentAppl = 0.5f;
 	private Point headPos;
 
+	private int score = 0;
 	public SlotMachineInv(Player player, SlotMachine plugin) {
 		super(plugin, player, "SlotMachine", 9 * 9, 1);
 
@@ -110,7 +111,7 @@ public class SlotMachineInv extends AbstractGui {
 						|| headPos.getX() <= 0 && head.dir.equals(Direction.LEFT)
 						|| headPos.getY() <= 0 && head.dir.equals(Direction.UP)
 						|| headPos.getY() >= 4 && head.dir.equals(Direction.DOWN)) {
-					lose("You crashed into a wall!");
+					lose("You crashed into a wall! score: " + score);
 					return;
 				}
 
@@ -122,14 +123,14 @@ public class SlotMachineInv extends AbstractGui {
 
 				
 				head.body.forEach((Point p) -> {
-					if(headPos.equals(p))lose("You crashed into yourself!");
+					if(headPos.equals(p))lose("You crashed into yourself! score: " + score);
 				});
 				Tile t = map.get(headPos);
 				
 				if(t instanceof Apple){
 					Apple ap = (Apple)t;
 					head.len += ap.golden ? -1 : 1;
-					
+					score++;
 					if(speed > 1)speed--;
 				}
 				
