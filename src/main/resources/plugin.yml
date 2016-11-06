@@ -2,5 +2,5 @@ name: SlotMachine
 main: tk.hugo4715.slotmachine.SlotMachine
 version: 1.0
 commands:
-  slot:
-    description: "lol"
+  arcade:
+    description: "Launch the arcade game!"

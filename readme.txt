@@ -1,0 +1,1 @@
+This is the arcade machine, just do /arcade

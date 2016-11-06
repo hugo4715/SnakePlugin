@@ -6,7 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class SlotMachine extends JavaPlugin{
 	@Override
 	public void onEnable() {
-		Bukkit.getPluginCommand("slot").setExecutor(new SlotExecutor(this));
+		Bukkit.getPluginCommand("arcade").setExecutor(new SlotExecutor(this));
 	}
 	
 }
