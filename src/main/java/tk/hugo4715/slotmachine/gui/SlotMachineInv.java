@@ -6,10 +6,16 @@ import java.util.Map;
 import java.util.Random;
 
 import org.apache.commons.lang.Validate;
+import org.bukkit.Color;
 import org.bukkit.DyeColor;
+import org.bukkit.FireworkEffect;
+import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Material;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -163,7 +169,16 @@ public class SlotMachineInv extends AbstractGui {
 
 	private void lose(String string) {
 		player.closeInventory();
-		player.sendMessage(ChatColor.RED + string);
+		player.sendMessage(ChatColor.GREEN + string);
+		
+		
+		 Firework fw = (Firework) player.getWorld().spawnEntity(player.getLocation(), EntityType.FIREWORK);
+         FireworkMeta fwm = fw.getFireworkMeta();
+         Random r = new Random();   
+         FireworkEffect effect = FireworkEffect.builder().flicker(r.nextBoolean()).withColor(Color.AQUA).build();
+         fwm.addEffect(effect);
+         fwm.setPower(r.nextInt(2) + 1);
+         fw.setFireworkMeta(fwm);           
 	}
 
 	private void goUp() {
