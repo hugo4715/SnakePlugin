@@ -8,5 +8,4 @@ public class SlotMachine extends JavaPlugin{
 	public void onEnable() {
 		Bukkit.getPluginCommand("arcade").setExecutor(new SlotExecutor(this));
 	}
-	
 }
